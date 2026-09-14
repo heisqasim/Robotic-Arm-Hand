@@ -1,0 +1,18 @@
+# Private / patient-derived material
+private/
+patient_data/
+scans_private/
+raw_patient_media/
+*.heic
+*.mov
+
+# Local build outputs
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# CAD temporary/backup files
+*.bak
+*.tmp
+*.autosave
