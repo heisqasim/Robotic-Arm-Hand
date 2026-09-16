@@ -40,6 +40,7 @@ Store privately:
 - intact-side reference scan
 - anonymous measurement sheet
 - fit notes
+- patient-specific electrode/sensor map
 
 Store in public GitHub only:
 
@@ -60,7 +61,7 @@ Jarvis Flutter UI
 3D viewer (GLB preview)
       |
       v
-Owner API / governed capability
+Owner API / governed engineering capability
       |
       v
 Geometry worker
@@ -69,7 +70,7 @@ Geometry worker
   - CadQuery / OpenCascade
       |
       v
-Private geometry storage
+Private geometry + test-data storage
 ```
 
 ### Division of work
@@ -79,15 +80,32 @@ The iPhone or dedicated photogrammetry engine performs image reconstruction.
 The Jarvis server performs lighter deterministic tasks such as:
 
 - mesh validation
+- scale checks
 - alignment
 - cross-sections
 - dimensions
 - volume
-- comparison between scans
+- intact-side / residual-side comparison
 - CAD parameter generation
+- prosthesis-length envelope checks
 - revision tracking
+- test-data visualization and comparison
 
 The browser/device GPU renders the interactive 3D view.
+
+## Safety boundary — non-negotiable for V1
+
+Jarvis is an **engineering-analysis and documentation tool**, not the prosthesis controller.
+
+For the wearable V1:
+
+- Jarvis must not command motors directly
+- Jarvis must not set or bypass current/travel/thermal safety limits
+- Jarvis must not be required for opening, closing or emergency release
+- loss of network/cloud/Jarvis must have no effect on basic safe operation
+- embedded firmware and mechanical/electrical safety remain authoritative
+
+Future research may explore high-level assistance only after the core prosthesis is reliable, and only through an independent safety boundary.
 
 ## Digital twin direction
 
@@ -97,8 +115,10 @@ A future anonymous case workspace can link:
 - intact-hand reference
 - socket revision
 - prosthetic hand revision
-- EMG electrode map
+- EMG/FMG electrode or sensor map
 - test results
+- cycle-life results
 - fit observations
+- mass/build-height budget
 
-This is an engineering aid, not a clinical decision system.
+This is an engineering aid, not a clinical decision system and not a live safety controller.
